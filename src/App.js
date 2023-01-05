@@ -1,25 +1,46 @@
-import {useState, useEffect} from "react"
-import {Product} from "./components/Product"
-import {getProduct} from "./services/getProduct"
+import { useState, useEffect } from "react";
+import { Product } from "./components/Product";
+import { getProduct } from "./services/product";
 function App() {
-  const [product, setProduct] = useState({})
-  useEffect(()=>{
-    setProduct(getProduct())
-  },[]
-  )
-  console.log(product)
+  const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  // with useEffect and async/await
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     setProduct(await getProduct());
+  //     setLoading(false);
+  //   }
+  //   fetchData();
+  // }, []);
+
+  // with then: infinite loop by changing state inside asyn function
+  // getProduct().then((value) => {
+  //   setProduct(value);
+  //   setLoading(false);
+  // });
+
+  // with useEffect and then
+  useEffect(() => {
+    getProduct().then((value) => {
+      setProduct(value);
+      setLoading(false);
+    });
+  }, []);
+
   return (
     <div>
-    My shopping cart!
-    {!product
-    ? "loading..."
-    :  <Product 
-      title={product.title}
-      description={product.description}
-      price={product.price}
-      />
-    }
-   </div>
+      My shopping cart!
+      {loading ? (
+        "loading..."
+      ) : (
+        <Product
+          title={product.title}
+          description={product.description}
+          price={product.price}
+        />
+      )}
+    </div>
   );
 }
 
