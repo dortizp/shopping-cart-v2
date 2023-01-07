@@ -31,15 +31,7 @@ function App() {
   return (
     <div>
       My shopping cart!
-      {loading ? (
-        "loading..."
-      ) : (
-        <Product
-          title={product.title}
-          description={product.description}
-          price={product.price}
-        />
-      )}
+      {loading ? "loading..." : <Product product={product} />}
     </div>
   );
 }

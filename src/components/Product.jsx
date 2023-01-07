@@ -1,4 +1,5 @@
-const Product = ({title, description, img, price}) => {
+const Product = ({product}) => {
+    const {title, description, price} = product
     return (
         <>
         <div>Product</div>
