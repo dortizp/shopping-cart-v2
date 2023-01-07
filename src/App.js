@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ProductList } from "./components/ProductList";
 import { getProducts } from "./services/products";
+import { Header } from "./components/Header"
 function App() {
   const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,7 @@ function App() {
   return (
     <div>
       My shopping cart!
+      <Header/>
       {loading ? "loading..." : <ProductList products={products} />}
     </div>
   );
