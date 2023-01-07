@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Product } from "./components/Product";
-import { getProduct } from "./services/product";
+import { ProductList } from "./components/ProductList";
+import { getProducts } from "./services/products";
 function App() {
-  const [product, setProduct] = useState({});
+  const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
 
   // with useEffect and async/await
@@ -22,8 +22,8 @@ function App() {
 
   // with useEffect and then
   useEffect(() => {
-    getProduct().then((value) => {
-      setProduct(value);
+    getProducts().then((value) => {
+      setProducts(value);
       setLoading(false);
     });
   }, []);
@@ -31,7 +31,7 @@ function App() {
   return (
     <div>
       My shopping cart!
-      {loading ? "loading..." : <Product product={product} />}
+      {loading ? "loading..." : <ProductList products={products} />}
     </div>
   );
 }
