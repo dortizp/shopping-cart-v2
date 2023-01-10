@@ -1,11 +1,12 @@
 import {Product} from "./Product"
 
 const ProductList = ({products}) => {
-    
   return (
       <div>
        {
-        products.map( item => <Product product={item}/>)
+        products.length
+        ? products.map( item => <Product key={item.id} product={item}/>)
+        : null
        }
       </div>
   )

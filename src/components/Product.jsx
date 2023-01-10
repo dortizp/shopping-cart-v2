@@ -1,11 +1,12 @@
 const Product = ({product}) => {
     const {title, description, price} = product
+    console.log('product in product', product)
     return (
         <>
-        <div>Product</div>
-        <span>{title}</span>
-        <span>{description}</span>
-        <span>{price}</span>
+        <hr></hr>
+        <p>title: {title}</p>
+        <p>description: {description}</p>
+        <p>price: ${price}</p>
         </>
     )
 }

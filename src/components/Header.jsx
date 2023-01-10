@@ -1,9 +1,11 @@
 import {useState} from "react"
 
-const Header = () => {
+const Header = ({list, setProducts}) => {
     const [searchText, setSearchText] = useState("")
     const search = () => {
-        console.log("searching...")
+        console.log("searching...", searchText)
+        const newList = list.filter( item => item.title === searchText)
+        setProducts(newList)
     }
     return (
         <>

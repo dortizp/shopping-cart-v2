@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { ProductList } from "./components/ProductList";
 import { getProducts } from "./services/products";
-import { Header } from "./components/Header"
+import { Header } from "./components/Header";
 function App() {
   const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
+  const [list, filterList] = useState({});
 
   // with useEffect and async/await
   // useEffect(() => {
@@ -29,10 +30,14 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    console.log("new products", products);
+  }, [products]);
+
   return (
     <div>
       My shopping cart!
-      <Header/>
+      <Header list={products} setProducts={setProducts} />
       {loading ? "loading..." : <ProductList products={products} />}
     </div>
   );
